@@ -46,7 +46,7 @@ package() {
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 	install -Dm644 macfand.1 "${pkgdir}/usr/share/man/man1/macfand.1"
-	install -Dm644 macfand.service.gen "${pkgdir}/usr/lib/systemd/system/macfand.service"
+	PREFIX=/usr sh macfand.service.gen > "${pkgdir}/usr/lib/systemd/system/macfand.service" && chmod 644 "${pkgdir}/usr/lib/systemd/system/macfand.service"
 
 	sudo perl ./util/updatemodel.pl "${pkgdir}/etc/macfand.conf" "${pkgdir}/usr/local/${pkgname/-git/}/machines/"
 }
